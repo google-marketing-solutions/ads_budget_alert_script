@@ -9,7 +9,7 @@ spend reaches a certain set of given threshold(s).
 The following values will be required before the script can run: 
 
     THRESHOLDS - comma-separated list of budget thresholds (percentage of total budget), expressed in decimal.
-    RECEPIENT_EMAIL - comma-separated list of emails for those who need to get the budget alert notifications.
+    RECEPIENT_EMAIL - comma-separated list of emails for those who need to get the budget alert notifications.  NOTE: please ensure the e-mails are correct as the recipients will receive budget information.
 
 ## license
 
