@@ -76,14 +76,11 @@ function sortByMultipleColumns(arr, columnIndices, ascendingOrders = [], dataTyp
 function checkBudget() {
 
   var date = new Date();
-  var firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1);
-  firstDayOfMonth = firstDayOfMonth.toISOString().slice(0, 10).replaceAll('-','');
 
-  var lastDayOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-  lastDayOfMonth = lastDayOfMonth.toISOString().slice(0, 10).replaceAll('-','');
+  var now = date.toISOString().slice(0, 19).replaceAll('-','').replaceAll('T', ' ');
 
-  Logger.log('Current month: ' + firstDayOfMonth + ' to ' + lastDayOfMonth);
-
+  Logger.log('Now is: ' + now);
+  
   const query = `
     SELECT
       customer.id,
@@ -102,8 +99,9 @@ function checkBudget() {
     FROM account_budget
     WHERE
       account_budget.status = 'APPROVED' AND
-      account_budget.approved_start_date_time <= ${firstDayOfMonth} AND
-      account_budget.approved_end_date_time >= ${lastDayOfMonth}
+      account_budget.approved_start_date_time <= '${now}' AND
+      account_budget.approved_end_date_time >= '${now}'
+
   `;
 
   var report = AdsApp.report(query);
